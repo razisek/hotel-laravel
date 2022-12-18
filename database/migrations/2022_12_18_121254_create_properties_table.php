@@ -26,9 +26,6 @@ return new class extends Migration
             $table->tinyInteger('star_rating')->nullable();
             $table->double('latitude');
             $table->double('longitude');
-            $table->foreignId('city_id')
-                ->constrained()
-                ->cascadeOnDelete();
             $table->string('status');
             $table->timestamps();
         });
