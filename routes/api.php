@@ -21,3 +21,5 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('search', [PropertyController::class, 'search']);
 Route::post('test-image', [PropertyController::class, 'testImage']);
+
+Route::get('properties/{id}', [PropertyController::class, 'detail']);
