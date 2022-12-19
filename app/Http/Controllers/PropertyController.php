@@ -33,8 +33,10 @@ class PropertyController extends Controller
     public function detail($id)
     {
         $property = QueryBuilder::for(Property::class)
-            ->with(['media'])
+            ->with(['media', 'reviews'])
             ->where('id', $id)
+            ->rating()
+            ->reviewTotal()
             ->first();
 
         if (!$property) {
@@ -46,8 +48,12 @@ class PropertyController extends Controller
             $images->push($media->getFullUrl());
         });
         $property->images = $images;
-        $property = collect($property);
-        $property->forget('media');
+        $property = $property->makeHidden('media');
+
+        $property->reviews = $property->reviews->map(function ($review) {
+            $review->makeHidden(['room_id', 'user_id', 'laravel_through_key']);
+            return $review;
+        });
 
         return new ShowResource($property, true, 'property successfully retrieved');
     }

@@ -25,8 +25,6 @@ return new class extends Migration
             $table->tinyInteger('star_rating')->nullable();
             $table->double('latitude');
             $table->double('longitude');
-            $table->double('rating');
-            $table->integer('review_count');
             $table->string('status');
             $table->timestamps();
         });

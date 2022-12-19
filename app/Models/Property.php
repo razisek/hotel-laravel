@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\DB;
 use Spatie\MediaLibrary\HasMedia;
 use Spatie\MediaLibrary\InteractsWithMedia;
 
@@ -18,6 +19,7 @@ class Property extends Model implements HasMedia
     protected $casts = [
         'check_in_time' => 'datetime:H:i',
         'check_out_time' => 'datetime:H:i',
+        'rating' => 'float',
     ];
 
     public function getPriceAttribute()
@@ -39,5 +41,24 @@ class Property extends Model implements HasMedia
     public function rooms()
     {
         return $this->hasMany(Room::class);
+    }
+
+    public function reviews()
+    {
+        return $this->hasManyThrough(Review::class, Room::class);
+    }
+
+    public function scopeRating($query)
+    {
+        return $query->withCount(['reviews as rating' => function ($query) {
+            $query->select(DB::raw('avg(rating)'));
+        }]);
+    }
+
+    public function scopeReviewTotal($query)
+    {
+        return $query->withCount(['reviews as total_review' => function ($query) {
+            $query->select(DB::raw('count(rating)'));
+        }]);
     }
 }
