@@ -27,9 +27,7 @@ class PropertyFactory extends Factory
             'star_rating' => $this->faker->numberBetween(1, 5),
             'latitude' => $this->faker->latitude,
             'longitude' => $this->faker->longitude,
-            'rating' => $this->faker->randomFloat(2, 0, 5),
-            'review_count' => $this->faker->numberBetween(0, 100),
-            'status' => $this->faker->randomElement([1, 2]),
+            'status' => $this->faker->randomElement([0, 1]),
         ];
     }
 }

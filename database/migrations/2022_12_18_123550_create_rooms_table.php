@@ -21,6 +21,9 @@ return new class extends Migration
             $table->unsignedDouble('room_size')->nullable();
             $table->boolean('with_breakfast')->default(false);
             $table->boolean('has_wifi')->default(false);
+            $table->foreignId('bed_type_id')
+                ->constrained()
+                ->cascadeOnDelete();
             $table->foreignId('property_id')
                 ->constrained()
                 ->cascadeOnDelete();

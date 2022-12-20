@@ -27,8 +27,16 @@ class Property extends Model implements HasMedia
         $rooms = $this->rooms();
         
         $listPrice = $rooms->get()->map(function ($room) {
-            return $room->roomRates->first()->price;
+            return $room->roomRates->first()->price ?? 0;
         });
+
+        $listPrice = $listPrice->filter(function ($price) {
+            return $price > 0;
+        });
+
+        if ($listPrice->count() == 0) {
+            return 0;
+        }
 
         return $listPrice->min() ?? 0;
     }
@@ -60,5 +68,10 @@ class Property extends Model implements HasMedia
         return $query->withCount(['reviews as total_review' => function ($query) {
             $query->select(DB::raw('count(rating)'));
         }]);
+    }
+
+    public function scopeBedType($query)
+    {
+        return $query->with('rooms.bedType');
     }
 }

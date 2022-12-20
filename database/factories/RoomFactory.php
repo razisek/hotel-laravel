@@ -24,6 +24,7 @@ class RoomFactory extends Factory
             'with_breakfast' => $this->faker->boolean,
             'has_wifi' => $this->faker->boolean,
             'property_id' => \App\Models\Property::factory(),
+            'bed_type_id' => $this->faker->numberBetween(1, 4),
         ];
     }
 }

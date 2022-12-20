@@ -37,6 +37,7 @@ class PropertyController extends Controller
             ->where('id', $id)
             ->rating()
             ->reviewTotal()
+            ->bedType()
             ->first();
 
         if (!$property) {
@@ -48,19 +49,23 @@ class PropertyController extends Controller
             $images->push($media->getFullUrl());
         });
         $property->images = $images;
-        $property = $property->makeHidden('media');
+        $property = $property->makeHidden(['media', 'rooms']);
 
         $property->reviews = $property->reviews->map(function ($review) {
             $review->makeHidden(['room_id', 'user_id', 'laravel_through_key']);
             return $review;
         });
 
+        $property->bed_type = $property->rooms->map(function ($room) {
+            return $room->bedType->name;
+        })->unique()->values();
+
         return new ShowResource($property, true, 'property successfully retrieved');
     }
 
-    public function testIMage()
+    public function testIMage($id)
     {
-        $property = Property::find(1);
+        $property = Property::find($id);
         $property->addMediaFromRequest('image')->toMediaCollection('images');
     }
 }

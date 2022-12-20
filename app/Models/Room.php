@@ -25,4 +25,9 @@ class Room extends Model
     {
         return $this->hasMany(Review::class);
     }
+
+    public function bedType()
+    {
+        return $this->belongsTo(BedType::class);
+    }
 }
