@@ -17,14 +17,14 @@ class PropertyController extends Controller
         $properties = QueryBuilder::for(Property::class)
             ->allowedFilters([
                 AllowedFilter::exact('star_rating'),
-                'rating',
+                AllowedFilter::scope('rating', 'rating_filter'),
                 'name',
             ])
             ->with(['media'])
             ->rating()
             ->reviewTotal()
             ->get();
-
+            
         if ($properties->count() == 0) {
             return new NotFoundResource('No properties found');
         }

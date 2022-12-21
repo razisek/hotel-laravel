@@ -25,7 +25,7 @@ class Property extends Model implements HasMedia
     public function getPriceAttribute()
     {
         $rooms = $this->rooms();
-        
+
         $listPrice = $rooms->get()->map(function ($room) {
             return $room->roomRates->first()->price ?? 0;
         });
@@ -68,6 +68,13 @@ class Property extends Model implements HasMedia
         return $query->withCount(['reviews as total_review' => function ($query) {
             $query->select(DB::raw('count(rating)'));
         }]);
+    }
+
+    public function scopeRatingFilter($query, $rating)
+    {
+        return $query->whereHas('rooms.reviews', function ($query) use ($rating) {
+            $query->havingRaw('round(avg(rating), 0) = ?', [$rating]);
+        });
     }
 
     public function scopeBedType($query)
