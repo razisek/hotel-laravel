@@ -21,6 +21,8 @@ class PropertyController extends Controller
                 'name',
             ])
             ->with(['media'])
+            ->rating()
+            ->reviewTotal()
             ->get();
 
         if ($properties->count() == 0) {
