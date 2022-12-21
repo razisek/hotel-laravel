@@ -20,12 +20,21 @@ class PropertyController extends Controller
                 'rating',
                 'name',
             ])
-            ->with(['thumbnail'])
+            ->with(['media'])
             ->get();
 
         if ($properties->count() == 0) {
             return new NotFoundResource('No properties found');
         }
+
+        $properties->each(function ($property) {
+            $images = collect();
+            $property->media->each(function ($media) use ($images) {
+                $images->push($media->getFullUrl());
+            });
+            $property->images = $images;
+            $property = $property->makeHidden(['media']);
+        });
 
         return new IndexCollection($properties, true, 'properties successfully retrieved');
     }
