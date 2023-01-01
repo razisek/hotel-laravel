@@ -101,18 +101,24 @@
                                         <td>Hunnam</td>
                                         <td>@charliehunnam</td>
                                     </tr>
-                                </tbody>
-                            </table>
-                            <table class="table mt-5">
-                                <thead class="table-light">
                                     <tr>
-                                        <th class="whitespace-nowrap">#</th>
-                                        <th class="whitespace-nowrap">First Name</th>
-                                        <th class="whitespace-nowrap">Last Name</th>
-                                        <th class="whitespace-nowrap">Username</th>
+                                        <td>1</td>
+                                        <td>Angelina</td>
+                                        <td>Jolie</td>
+                                        <td>@angelinajolie</td>
                                     </tr>
-                                </thead>
-                                <tbody>
+                                    <tr>
+                                        <td>2</td>
+                                        <td>Brad</td>
+                                        <td>Pitt</td>
+                                        <td>@bradpitt</td>
+                                    </tr>
+                                    <tr>
+                                        <td>3</td>
+                                        <td>Charlie</td>
+                                        <td>Hunnam</td>
+                                        <td>@charliehunnam</td>
+                                    </tr>
                                     <tr>
                                         <td>1</td>
                                         <td>Angelina</td>
@@ -174,18 +180,24 @@
                                         <td>Hunnam</td>
                                         <td>@charliehunnam</td>
                                     </tr>
-                                </tbody>
-                            </table>
-                            <table class="table mt-5">
-                                <thead class="table-light">
                                     <tr>
-                                        <th class="whitespace-nowrap">#</th>
-                                        <th class="whitespace-nowrap">First Name</th>
-                                        <th class="whitespace-nowrap">Last Name</th>
-                                        <th class="whitespace-nowrap">Username</th>
+                                        <td>1</td>
+                                        <td>Angelina</td>
+                                        <td>Jolie</td>
+                                        <td>@angelinajolie</td>
                                     </tr>
-                                </thead>
-                                <tbody>
+                                    <tr>
+                                        <td>2</td>
+                                        <td>Brad</td>
+                                        <td>Pitt</td>
+                                        <td>@bradpitt</td>
+                                    </tr>
+                                    <tr>
+                                        <td>3</td>
+                                        <td>Charlie</td>
+                                        <td>Hunnam</td>
+                                        <td>@charliehunnam</td>
+                                    </tr>
                                     <tr>
                                         <td>1</td>
                                         <td>Angelina</td>
