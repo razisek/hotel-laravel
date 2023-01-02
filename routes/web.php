@@ -21,3 +21,4 @@ Route::get('/room/create', [RoomController::class, 'create'])->name('rooms.creat
 Route::post('/room/create', [RoomController::class, 'store'])->name('rooms.store');
 Route::get('/room/{room}/edit', [RoomController::class, 'edit'])->name('rooms.edit');
 Route::put('/room/{room}/edit', [RoomController::class, 'update'])->name('rooms.update');
+Route::delete('/room/delete/{room}', [RoomController::class, 'destroy'])->name('rooms.destroy');

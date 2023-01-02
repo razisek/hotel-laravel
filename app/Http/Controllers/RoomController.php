@@ -17,7 +17,7 @@ class RoomController extends Controller
             ->allowedSorts(['name', 'description'])
             ->allowedIncludes(['users'])
             ->paginate(10);
-        
+
         return view('dashboard.room.list', compact('rooms'));
     }
 
@@ -89,5 +89,13 @@ class RoomController extends Controller
 
         return redirect()->route('rooms')
             ->with('success', 'Room updated successfully.');
+    }
+
+    public function destroy(Room $room)
+    {
+        $room->delete();
+
+        return redirect()->route('rooms')
+            ->with('success', 'Room deleted successfully');
     }
 }

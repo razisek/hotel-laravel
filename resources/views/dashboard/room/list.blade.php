@@ -63,7 +63,7 @@
                                     <div class="flex justify-center items-center">
                                         <a class="flex items-center mr-3" href="{{ route('rooms.edit', $room->id) }}"> <i
                                                 data-feather="check-square" class="w-4 h-4 mr-1"></i> Edit </a>
-                                        <button onclick="" class="flex items-center text-danger" data-tw-toggle="modal"
+                                        <button onclick="confirmDelete('{{ $room->id }}')" class="flex items-center text-danger" data-tw-toggle="modal"
                                             data-tw-target="#delete-confirmation-modal"> <i data-feather="trash-2"
                                                 class="w-4 h-4 mr-1"></i> Delete </button>
                                     </div>
@@ -105,43 +105,49 @@
                     </ul>
                 </nav>
             </div>
-
-            <div id="delete-confirmation-modal" class="modal" tabindex="-1" aria-hidden="true">
-                <div class="modal-dialog">
-                    <div class="modal-content">
-                        <div class="modal-body p-0">
-                            <div class="p-5 text-center">
-                                <i data-feather="x-circle" class="w-16 h-16 text-danger mx-auto mt-3"></i>
-                                <div class="text-3xl mt-5">Are you sure?</div>
-                                <div class="text-slate-500 mt-2">
-                                    Do you really want to delete these records?
-                                    <br>
-                                    This process cannot be undone.
-                                </div>
-                            </div>
-                            <div class="px-5 pb-8 text-center">
-                                <button type="button" data-tw-dismiss="modal"
-                                    class="btn btn-outline-secondary w-24 mr-1">Cancel</button>
-                                <button type="button" class="btn btn-danger w-24">Delete</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
         </div>
     </div>
 @endsection
 
 @section('script')
     <script>
-        
+        function confirmDelete(id) {
+            Swal.fire({
+                title: 'Hold Up!',
+                text: "Are you sure you want to delete this?",
+                type: 'warning',
+                icon: 'warning',
+                showCancelButton: true,
+                cancelButtonColor: '#d33',
+                confirmButtonColor: '#435EBE',
+                confirmButtonText: 'Yes!'
+            }).then((result) => {
+                if (result.value) {
+                    fetch("{{ route('rooms.destroy', '') }}" + '/' + id, {
+                        method: 'DELETE',
+                        headers: {
+                            'X-CSRF-TOKEN': '{{ csrf_token() }}'
+                        }
+                    }).then(response => {
+                        Swal.fire({
+                            title: 'Success!',
+                            text: 'Room has been deleted.',
+                            type: 'success',
+                            icon: 'success'
+                        }).then(() => {
+                            location.reload();
+                        });
+                    });
+                }
+            });
+        }
     </script>
     @if ($message = Session::get('success'))
         <script>
             (function() {
                 Toastify({
                     node: $("#success-notification-content").clone().removeClass("hidden")[0],
-                    duration: 6000,
+                    duration: 5000,
                     newWindow: true,
                     close: true,
                     gravity: "top",
