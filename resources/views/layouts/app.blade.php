@@ -15,6 +15,7 @@
     <!-- BEGIN: CSS Assets-->
     <link rel="stylesheet" href="{{ asset('dist/css/app.css') }}" />
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
+    <script src="https://cdn.tailwindcss.com"></script>
     <!-- END: CSS Assets-->
 </head>
 <!-- END: Head -->
@@ -101,7 +102,7 @@
                             <div class="side-menu__sub-icon "> <i data-feather="chevron-down"></i> </div>
                         </div>
                     </a>
-                    <ul class="{{ Route::is('rooms') || Route::is('rooms.create') || Route::is('rooms.edit') ? 'side-menu__sub-open' : '' }}">
+                    <ul class="{{ Route::is('rooms') || Route::is('rooms.create') || Route::is('rooms.edit') || Route::is('rate-allotment') ? 'side-menu__sub-open' : '' }}">
                         <li>
                             <a href="{{ route('rooms') }}" class="side-menu {{ Route::is('rooms') || Route::is('rooms.create') || Route::is('rooms.edit') ? 'side-menu--active' : '' }}">
                                 <div class="side-menu__icon"> <i data-feather="archive"></i> </div>
@@ -109,7 +110,7 @@
                             </a>
                         </li>
                         <li>
-                            <a href="#" class="side-menu">
+                            <a href="{{ route('rate-allotment', 1) }}" class="side-menu {{ Route::is('rate-allotment') ? 'side-menu--active' : '' }}">
                                 <div class="side-menu__icon"> <i data-feather="dollar-sign"></i> </div>
                                 <div class="side-menu__title"> Rate & Allotment </div>
                             </a>
@@ -184,6 +185,7 @@
     <script src="https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/markerclusterer.js">
     </script>
     <script src="{{ asset('dist/js/app.js') }}"></script>
+    <script src="https://code.jquery.com/jquery-3.6.3.min.js" integrity="sha256-pvPw+upLPUjgMXY0G+8O0xUf+/Im1MZjXxxgOcBQBXU=" crossorigin="anonymous"></script>
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     @yield('script')

@@ -30,4 +30,14 @@ class Room extends Model
     {
         return $this->belongsTo(BedType::class);
     }
+
+    public function rates()
+    {
+        return $this->hasMany(RoomRate::class);
+    }
+
+    public function allotments()
+    {
+        return $this->hasMany(RoomAllotment::class);
+    }
 }

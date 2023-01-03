@@ -95,7 +95,11 @@
                 <a href="{{ url()->previous() }}">
                     <button type="button" class="btn btn-outline-secondary w-24 mr-1">Cancel</button>
                 </a>
-                <button type="submit" class="btn btn-primary w-24">Edit</button>
+                <button type="submit">
+                    <div class="btn btn-primary w-24 mr-1 mb-2">
+                        Edit
+                    </div>
+                </button>
             </div>
         </form>
     </div>

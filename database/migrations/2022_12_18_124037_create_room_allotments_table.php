@@ -21,9 +21,6 @@ return new class extends Migration
             $table->date('date');
             $table->unsignedInteger('available');
             $table->unsignedInteger('used');
-            $table->boolean('close_out')->nullable();
-            $table->boolean('no_check_in')->nullable();
-            $table->boolean('no_check_out')->nullable();
             $table->timestamps();
             $table->unique(['date', 'room_id']);
         });

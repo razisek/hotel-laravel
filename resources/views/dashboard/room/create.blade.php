@@ -28,8 +28,8 @@
         @enderror
         @error('capacity')
             <div class="alert alert-danger alert-dismissible show flex items-center mb-2" role="alert"> <i
-                    data-feather="alert-octagon" class="w-6 h-6 mr-2"></i> Capacity : {{ $message }} <button
-                    type="button" class="btn-close text-white" data-tw-dismiss="alert" aria-label="Close"> <i data-feather="x"
+                    data-feather="alert-octagon" class="w-6 h-6 mr-2"></i> Capacity : {{ $message }} <button type="button"
+                    class="btn-close text-white" data-tw-dismiss="alert" aria-label="Close"> <i data-feather="x"
                         class="w-4 h-4"></i> </button> </div>
         @enderror
         @error('room_size')
@@ -40,8 +40,8 @@
         @enderror
         @error('bed_type_id')
             <div class="alert alert-danger alert-dismissible show flex items-center mb-2" role="alert"> <i
-                    data-feather="alert-octagon" class="w-6 h-6 mr-2"></i> Bed Type : {{ $message }} <button
-                    type="button" class="btn-close text-white" data-tw-dismiss="alert" aria-label="Close"> <i data-feather="x"
+                    data-feather="alert-octagon" class="w-6 h-6 mr-2"></i> Bed Type : {{ $message }} <button type="button"
+                    class="btn-close text-white" data-tw-dismiss="alert" aria-label="Close"> <i data-feather="x"
                         class="w-4 h-4"></i> </button> </div>
         @enderror
         <form class="intro-y box p-5" action="{{ route('rooms.store') }}" method="POST">
@@ -94,7 +94,11 @@
                 <a href="{{ url()->previous() }}">
                     <button type="button" class="btn btn-outline-secondary w-24 mr-1">Cancel</button>
                 </a>
-                <button type="submit" class="btn btn-primary w-24">Save</button>
+                <button type="submit">
+                    <div class="btn btn-primary w-24 mr-1 mb-2">
+                        Save
+                    </div>
+                </button>
             </div>
         </form>
     </div>
