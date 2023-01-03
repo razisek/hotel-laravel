@@ -95,27 +95,10 @@
                     </a>
                 </li>
                 <li>
-                    <a href="javascript:;" class="side-menu {{ Route::is('rooms') || Route::is('rooms.create') || Route::is('rooms.edit') ? 'side-menu--active' : '' }}">
+                    <a href="{{ route('rooms') }}" class="side-menu {{ Route::is('rooms') || Route::is('rooms.create') || Route::is('rooms.edit') || Route::is('rate-allotment') ? 'side-menu--active' : '' }}">
                         <div class="side-menu__icon"> <i data-feather="book-open"></i> </div>
-                        <div class="side-menu__title">
-                            Room
-                            <div class="side-menu__sub-icon "> <i data-feather="chevron-down"></i> </div>
-                        </div>
+                        <div class="side-menu__title"> Room </div>
                     </a>
-                    <ul class="{{ Route::is('rooms') || Route::is('rooms.create') || Route::is('rooms.edit') || Route::is('rate-allotment') ? 'side-menu__sub-open' : '' }}">
-                        <li>
-                            <a href="{{ route('rooms') }}" class="side-menu {{ Route::is('rooms') || Route::is('rooms.create') || Route::is('rooms.edit') ? 'side-menu--active' : '' }}">
-                                <div class="side-menu__icon"> <i data-feather="archive"></i> </div>
-                                <div class="side-menu__title"> List Room </div>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="{{ route('rate-allotment', 1) }}" class="side-menu {{ Route::is('rate-allotment') ? 'side-menu--active' : '' }}">
-                                <div class="side-menu__icon"> <i data-feather="dollar-sign"></i> </div>
-                                <div class="side-menu__title"> Rate & Allotment </div>
-                            </a>
-                        </li>
-                    </ul>
                 </li>
                 <li>
                     <a href="#" class="side-menu">

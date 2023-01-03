@@ -59,8 +59,10 @@
                                     <div class="flex items-center justify-center text-success"> <i
                                             data-feather="check-square" class="w-4 h-4 mr-2"></i> Available </div>
                                 </td>
-                                <td class="table-report__action w-56">
+                                <td class="table-report__action w-81">
                                     <div class="flex justify-center items-center">
+                                        <a class="flex items-center mr-3" href="{{ route('rate-allotment', $room->id) }}"> <i
+                                            data-feather="folder" class="w-4 h-4 mr-1"></i> Rate & Allotment </a>
                                         <a class="flex items-center mr-3" href="{{ route('rooms.edit', $room->id) }}"> <i
                                                 data-feather="check-square" class="w-4 h-4 mr-1"></i> Edit </a>
                                         <button onclick="confirmDelete('{{ $room->id }}')" class="flex items-center text-danger" data-tw-toggle="modal"
