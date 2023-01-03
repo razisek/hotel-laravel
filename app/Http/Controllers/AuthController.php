@@ -4,9 +4,11 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\LoginRequest;
 use App\Http\Requests\RegisterRequest;
+use App\Models\Manager;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 
 class AuthController extends Controller
 {
@@ -62,5 +64,18 @@ class AuthController extends Controller
             'success' => true,
             'code' => 200
         ]);
+    }
+
+    public function loginWeb(Request $request)
+    {
+        $manager = Manager::where('email', $request->email)->first();
+        if (!$manager || !Hash::check($request->password, $manager->password)) {
+            return back()->with('failed', 'Invalid login details');
+        }
+
+        $remember = $request->has('remember');
+
+        auth()->login($manager, $remember);
+        return redirect()->route('dashboard');
     }
 }

@@ -81,4 +81,9 @@ class Property extends Model implements HasMedia
     {
         return $query->with('rooms.bedType');
     }
+
+    public function manager()
+    {
+        return $this->belongsToMany(Manager::class, 'property_ownership', 'property_id', 'manager_id');
+    }
 }

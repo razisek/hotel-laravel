@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AuthController;
 use App\Http\Controllers\RateAllotmentController;
 use App\Http\Controllers\RoomController;
 use Illuminate\Support\Facades\Route;
@@ -16,18 +17,22 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('login', fn () => view('login'))->name('login');
-Route::get('/', fn () => view('dashboard.dashboard'))->name('dashboard');
+Route::post('login', [AuthController::class, 'loginWeb'])->name('login-action');
 
-// rooms
-Route::get('/rooms', [RoomController::class, 'index'])->name('rooms');
-Route::get('/room/create', [RoomController::class, 'create'])->name('rooms.create');
-Route::post('/room/create', [RoomController::class, 'store'])->name('rooms.store');
-Route::get('/room/{room}/edit', [RoomController::class, 'edit'])->name('rooms.edit');
-Route::put('/room/{room}/edit', [RoomController::class, 'update'])->name('rooms.update');
-Route::delete('/room/delete/{room}', [RoomController::class, 'destroy'])->name('rooms.destroy');
+Route::group(['middleware' => ['auth:sanctum']], function () {
+    Route::get('/', fn () => view('dashboard.dashboard'))->name('dashboard');
+    
+    // rooms
+    Route::get('/rooms', [RoomController::class, 'index'])->name('rooms');
+    Route::get('/room/create', [RoomController::class, 'create'])->name('rooms.create');
+    Route::post('/room/create', [RoomController::class, 'store'])->name('rooms.store');
+    Route::get('/room/{room}/edit', [RoomController::class, 'edit'])->name('rooms.edit');
+    Route::put('/room/{room}/edit', [RoomController::class, 'update'])->name('rooms.update');
+    Route::delete('/room/delete/{room}', [RoomController::class, 'destroy'])->name('rooms.destroy');
 
-// rate & allotment
-Route::get('/room/{room}/rate-allotment', [RateAllotmentController::class, 'index'])->name('rate-allotment');
-Route::post('/room/{room}/get-rate', [RateAllotmentController::class, 'getAllRate'])->name('get-rate');
-Route::post('/room/{room}/save-rates', [RateAllotmentController::class, 'saveRates'])->name('save-rates');
-Route::post('/room/{room}/get-allotment', [RateAllotmentController::class, 'getAllAllotment'])->name('get-allotment');
+    // rate & allotment
+    Route::get('/room/{room}/rate-allotment', [RateAllotmentController::class, 'index'])->name('rate-allotment');
+    Route::post('/room/{room}/get-rate', [RateAllotmentController::class, 'getAllRate'])->name('get-rate');
+    Route::post('/room/{room}/save-rates', [RateAllotmentController::class, 'saveRates'])->name('save-rates');
+    Route::post('/room/{room}/get-allotment', [RateAllotmentController::class, 'getAllAllotment'])->name('get-allotment');
+});
