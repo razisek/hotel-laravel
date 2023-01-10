@@ -12,19 +12,20 @@ use Spatie\QueryBuilder\QueryBuilder;
 
 class PropertyController extends Controller
 {
-    public function search(Request $request)
+    public function search()
     {
         $properties = QueryBuilder::for(Property::class)
             ->allowedFilters([
                 AllowedFilter::exact('star_rating'),
                 AllowedFilter::scope('rating', 'rating_filter'),
+                AllowedFilter::exact('city'),
                 'name',
             ])
             ->with(['media'])
             ->rating()
             ->reviewTotal()
             ->get();
-            
+
         if ($properties->count() == 0) {
             return new NotFoundResource('No properties found');
         }
