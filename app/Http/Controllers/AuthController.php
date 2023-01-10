@@ -75,7 +75,7 @@ class AuthController extends Controller
 
         $remember = $request->has('remember');
 
-        auth()->login($manager, $remember);
+        auth()->guard('manager')->login($manager, $remember);
         return redirect()->route('dashboard');
     }
 }

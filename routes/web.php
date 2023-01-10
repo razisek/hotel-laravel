@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\PropertyController;
 use App\Http\Controllers\RateAllotmentController;
 use App\Http\Controllers\RoomController;
 use Illuminate\Support\Facades\Route;
@@ -19,7 +20,7 @@ use Illuminate\Support\Facades\Route;
 Route::get('login', fn () => view('login'))->name('login');
 Route::post('login', [AuthController::class, 'loginWeb'])->name('login-action');
 
-Route::group(['middleware' => ['auth:sanctum']], function () {
+Route::group(['middleware' => ['auth:manager']], function () {
     Route::get('/', fn () => view('dashboard.dashboard'))->name('dashboard');
     
     // rooms
@@ -35,4 +36,7 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
     Route::post('/room/{room}/get-rate', [RateAllotmentController::class, 'getAllRate'])->name('get-rate');
     Route::post('/room/{room}/save-rates', [RateAllotmentController::class, 'saveRates'])->name('save-rates');
     Route::post('/room/{room}/get-allotment', [RateAllotmentController::class, 'getAllAllotment'])->name('get-allotment');
+
+    // Property
+    Route::get('/property', [PropertyController::class, 'index'])->name('property');
 });
