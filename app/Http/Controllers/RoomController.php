@@ -12,10 +12,14 @@ class RoomController extends Controller
 {
     public function index()
     {
+        $manager = auth()->guard('manager')->user();
         $rooms = QueryBuilder::for(Room::class)
             ->allowedFilters(['name', 'description'])
             ->allowedSorts(['name', 'description'])
             ->allowedIncludes(['users'])
+            ->whereHas('property.manager', function ($query) use ($manager) {
+                $query->where('manager_id', $manager->id);
+            })
             ->paginate(10);
 
         return view('dashboard.room.list', compact('rooms'));

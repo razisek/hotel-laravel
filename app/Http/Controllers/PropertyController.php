@@ -80,4 +80,19 @@ class PropertyController extends Controller
         $property = Property::find($id);
         $property->addMediaFromRequest('image')->toMediaCollection('images');
     }
+
+    public function index()
+    {
+        $manager = auth()->guard('manager')->user();
+        $property = QueryBuilder::for(Property::class)
+            ->whereHas('manager', function ($query) use ($manager) {
+                $query->where('manager_id', $manager->id);
+            })
+            ->with(['media'])
+            ->rating()
+            ->reviewTotal()
+            ->first();
+
+        return  view('dashboard.property.index', compact('property'));
+    }
 }

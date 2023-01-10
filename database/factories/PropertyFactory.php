@@ -24,6 +24,7 @@ class PropertyFactory extends Factory
             'website' => $this->faker->url,
             'address' => $this->faker->address,
             'policy' => $this->faker->text,
+            'city' => $this->faker->randomElement(['Magelang', 'Bandung', 'Jakarta', 'Yogyakarta', 'Surabaya', 'Semarang', 'Bali', 'Surakarta']),
             'star_rating' => $this->faker->numberBetween(1, 5),
             'latitude' => $this->faker->latitude,
             'longitude' => $this->faker->longitude,

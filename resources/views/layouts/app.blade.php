@@ -101,7 +101,7 @@
                     </a>
                 </li>
                 <li>
-                    <a href="#" class="side-menu">
+                    <a href="{{ route('property') }}" class="side-menu {{ Route::is('property') ? 'side-menu--active' : '' }}">
                         <div class="side-menu__icon"> <i data-feather="home"></i> </div>
                         <div class="side-menu__title"> Property </div>
                     </a>

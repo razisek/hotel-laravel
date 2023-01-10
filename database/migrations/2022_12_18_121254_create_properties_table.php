@@ -21,6 +21,7 @@ return new class extends Migration
             $table->time('check_out_time');
             $table->string('website')->nullable();
             $table->text('address');
+            $table->string('city');
             $table->text('policy')->nullable();
             $table->tinyInteger('star_rating')->nullable();
             $table->double('latitude');
