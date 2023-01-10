@@ -33,6 +33,7 @@ class RoomController extends Controller
 
     public function store(Request $request)
     {
+        $manager = auth()->guard('manager')->user();
         $validator = Validator::make($request->all(), [
             'name' => 'required',
             'description' => 'required',
@@ -49,7 +50,7 @@ class RoomController extends Controller
         $wifi = $request->has('wifi') ? 1 : 0;
 
         $roomData = array_merge($request->all(), [
-            'property_id' => 1,
+            'property_id' => $manager->property->first()->id,
             'with_breakfast' => $breakfast,
             'has_wifi' => $wifi,
         ]);
