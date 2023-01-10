@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\ManagerController;
 use App\Http\Controllers\PropertyController;
 use App\Http\Controllers\RateAllotmentController;
 use App\Http\Controllers\RoomController;
@@ -22,6 +23,9 @@ Route::post('login', [AuthController::class, 'loginWeb'])->name('login-action');
 
 Route::group(['middleware' => ['auth:manager']], function () {
     Route::get('/', fn () => view('dashboard.dashboard'))->name('dashboard');
+
+    // Logout
+    Route::get('/logout', [AuthController::class, 'logoutWeb'])->name('logout');
     
     // rooms
     Route::get('/rooms', [RoomController::class, 'index'])->name('rooms');
@@ -39,4 +43,9 @@ Route::group(['middleware' => ['auth:manager']], function () {
 
     // Property
     Route::get('/property', [PropertyController::class, 'index'])->name('property');
+
+    // Manager
+    Route::get('/manager', [ManagerController::class, 'index'])->name('manager');
+    Route::post('/manager/email', [ManagerController::class, 'changeEmail'])->name('manager.email');
+    Route::post('/manager/password', [ManagerController::class, 'changePassword'])->name('manager.password');
 });

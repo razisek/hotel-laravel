@@ -78,4 +78,10 @@ class AuthController extends Controller
         auth()->guard('manager')->login($manager, $remember);
         return redirect()->route('dashboard');
     }
+
+    public function logoutWeb(Request $request)
+    {
+        auth()->guard('manager')->logout();
+        return redirect()->route('login');
+    }
 }

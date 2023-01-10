@@ -107,7 +107,7 @@
                     </a>
                 </li>
                 <li>
-                    <a href="#" class="side-menu">
+                    <a href="{{ route('manager') }}" class="side-menu {{ Route::is('manager') ? 'side-menu--active' : '' }}">
                         <div class="side-menu__icon"> <i data-feather="user"></i> </div>
                         <div class="side-menu__title"> Profile </div>
                     </a>
@@ -115,7 +115,7 @@
                 <li>
                     <a href="#" class="side-menu">
                         <div class="side-menu__icon"> <i data-feather="credit-card"></i> </div>
-                        <div class="side-menu__title"> Withdraw </div>
+                        <div class="side-menu__title"> Transaction </div>
                     </a>
                 </li>
             </ul>
@@ -142,14 +142,14 @@
                                 <hr class="dropdown-divider border-white/[0.08]">
                             </li>
                             <li>
-                                <a href="" class="dropdown-item hover:bg-white/5"> <i data-feather="user"
+                                <a href="{{ route('manager') }}" class="dropdown-item hover:bg-white/5"> <i data-feather="user"
                                         class="w-4 h-4 mr-2"></i> Profile </a>
                             </li>
                             <li>
                                 <hr class="dropdown-divider border-white/[0.08]">
                             </li>
                             <li>
-                                <a href="" class="dropdown-item hover:bg-white/5"> <i
+                                <a href="{{ route('logout') }}" class="dropdown-item hover:bg-white/5"> <i
                                         data-feather="toggle-right" class="w-4 h-4 mr-2"></i> Logout </a>
                             </li>
                         </ul>
